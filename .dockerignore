@@ -1,0 +1,10 @@
+.git
+.gitignore
+node_modules
+npm-debug.log
+.git/*
+vendor
+.DS_Store
+*.md
+media/videos/*
+Screenshots/*
