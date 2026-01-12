@@ -141,23 +141,27 @@ hr {
    .video-container { --m3u-video-fit: fill; }
 */
 
-#youtube-video-container {
-  align-items: stretch;
-  padding: 1vh;
-  position: fixed;
-  height: 80vh;
-  width: 70vw;
+/* Container do YouTube herda o layout existente */
+#youtube-video {
+  position: absolute;
+  inset: 0;               /* respeita o container pai */
+  width: 99%;
+  height: 99%;
   overflow: hidden;
-  aspect-ratio: 16/9;
-  vertical-align: middle;
 }
 
-#youtube-video-iframe {
-  aspect-ratio: auto;
-  width: 100%;
-  height: 100%;
-  vertical-align: middle;
+/* Iframe do YouTube – stretch forçado */
+#youtube-iframe {
+  position: absolute;
+  top: auto;
+  left: auto;
+
+  width: 99%;
+  height: 99%;
+
+  border: 0;
 }
+
 
 #slides-container {
   position: relative;

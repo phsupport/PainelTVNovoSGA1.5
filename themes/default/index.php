@@ -20,8 +20,8 @@
     switch ($tipo) {
         case 'm3u':
             ?>
-            <div class="video-container">
-            <video class="video" autoplay controls>
+            <div id="m3u-container" class="video-container">
+            <video id="m3u-video" class="video" autoplay controls>
                 <source src="<?php echo $videoM3U; ?>" type="application/x-mpegURL">
                 Seu navegador não suporta o elemento de vídeo HTML5.
             </video>
@@ -39,16 +39,15 @@
             break;
         case 'youtube':
             ?>
-            <div id="youtube-video-container">
-            <iframe id="youtube-video-iframe" src="<?php echo (isset($config['videoYoutube']) && !empty($config['videoYoutube'])) ? htmlspecialchars($config['videoYoutube']) : 'https://www.youtube.com/embed/GCPBudrVA5s'; ?>" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div id="youtube-container" class="video-container">
+            <iframe id="youtube-iframe" class="video" src="<?php echo (isset($config['videoYoutube']) && !empty($config['videoYoutube'])) ? htmlspecialchars($config['videoYoutube']) : 'https://www.youtube.com/embed/wnhvanMdx4s'; ?>" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <?php
             break;
         case 'local':
             ?>
-            <div id="youtube-video-container">
-                
-            <iframe id="youtube-video-iframe"  scrolling="no" src="themes/default/videos/index.php" frameborder="0" ></iframe>
+            <div id="local-video-container" class="video-container">
+            <iframe id="local-video-iframe" class="video" scrolling="no" src="themes/default/videos/index.php" frameborder="0" ></iframe>
             </div>
             <?php
             break;
