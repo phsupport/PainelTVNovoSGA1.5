@@ -16,21 +16,40 @@
 // Convert to array 
     $config = json_decode($c, true);
     $tipo = $config['tipo'];
-    $dadoDoVideo = $config['dadoDoVideo'];
+    $videoM3U = $config['videoM3U'];
     switch ($tipo) {
         case 'm3u':
             ?>
-            <iframe id="slides-container" src="chrome-extension://hahkjjkedonglpienpfiganogikkkoii/player.html#<?php echo $dadoDoVideo; ?>" frameborder="0"></iframe>
+            <div class="video-container">
+            <video class="video" autoplay controls>
+                <source src="<?php echo $videoM3U; ?>" type="application/x-mpegURL">
+                Seu navegador não suporta o elemento de vídeo HTML5.
+            </video>
+            <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+            <script>
+                var video = document.querySelector('.video');
+                if (Hls.isSupported()) {
+                  var hls = new Hls();
+                  hls.loadSource('<?php echo $videoM3U; ?>');
+                  hls.attachMedia(video);
+                }
+            </script>
+            </div>
             <?php
             break;
         case 'youtube':
             ?>
-            <iframe width="896" height="575" src="https://www.youtube.com/embed/ABVQXgr2LW4?&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div id="youtube-video-container">
+            <iframe id="youtube-video-iframe" src="<?php echo (isset($config['videoYoutube']) && !empty($config['videoYoutube'])) ? htmlspecialchars($config['videoYoutube']) : 'https://www.youtube.com/embed/GCPBudrVA5s'; ?>" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
             <?php
             break;
         case 'local':
             ?>
-            <iframe id="slides-container"  scrolling="no" src="themes/default/videos/index.php" frameborder="0" ></iframe>
+            <div id="youtube-video-container">
+                
+            <iframe id="youtube-video-iframe"  scrolling="no" src="themes/default/videos/index.php" frameborder="0" ></iframe>
+            </div>
             <?php
             break;
     }
@@ -62,6 +81,15 @@
         <div id="separador"></div>
         <div id="relogio-container">
             <iframe id="relogio" src="themes/default/relogio/index.htm" frameborder="0" scrolling="no" ></iframe>
+        </div>
+        <div id="logo-container">
+            <div id="left-logo" class="logo">
+                <img src="<?php echo (isset($config['logoEsquerda']) && !empty($config['logoEsquerda'])) ? htmlspecialchars($config['logoEsquerda']) : 'themes/default/img/logos/logo-gestao-pmg.png'; ?>" alt="Logo">
+            </div>
+            <div id="separator"></div>
+            <div id="right-logo" class="logo">
+                <img src="<?php echo (isset($config['logoDireita']) && !empty($config['logoDireita'])) ? htmlspecialchars($config['logoDireita']) : 'themes/default/img/logos/logo-sti-pmg.png'; ?>" alt="Logo">
+            </div> 
         </div>
     </div>
 
